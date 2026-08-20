@@ -32,6 +32,25 @@ const langLinks = [
 	{ code: 'ca', label: 'CA', href: slug ? `/ca/${slug}` : '/ca' },
 	{ code: 'ru', label: 'RU', href: slug ? `/ru/${slug}` : '/ru' },
 ] as const;
+
+const hreflangLinks = langLinks.map((l) => ({
+	code: l.code,
+	href: new URL(l.href, Astro.site).toString(),
+}));
+const xDefaultHref = hreflangLinks.find((l) => l.code === 'es')!.href;
+
+const linkedinURL = 'https://www.linkedin.com/in/pilar-nieto-pérez-020b0320a';
+const homeURL = new URL('/', Astro.site).toString();
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'ProfessionalService',
+	name: 'Pilar Nieto Pérez — Asesoría Fiscal',
+	url: homeURL,
+	description,
+	image: ogImage.toString(),
+	sameAs: [linkedinURL],
+	areaServed: 'Valencia, España',
+};
 ---
 
 <!doctype html>
@@ -44,6 +63,13 @@ const langLinks = [
 		<meta name="description" content={description} />
 		{noindex && <meta name="robots" content="noindex,nofollow" />}
 		<link rel="canonical" href={canonicalURL} />
+
+		{
+			hreflangLinks.map((l) => (
+				<link rel="alternate" hreflang={l.code} href={l.href} />
+			))
+		}
+		<link rel="alternate" hreflang="x-default" href={xDefaultHref} />
 
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -71,6 +97,8 @@ const langLinks = [
 			href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
 			rel="stylesheet"
 		/>
+
+		<script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
 	</head>
 	<body>
 		<header id="site-header">
