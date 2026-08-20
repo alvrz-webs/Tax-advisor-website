@@ -1,15 +1,17 @@
 :root {
 	--color-bg: #f7f4ee;
 	--color-bg-elevated: #ffffff;
-	--color-border: rgba(23, 33, 58, 0.13);
+	--color-border: rgba(22, 37, 60, 0.13);
 
-	--color-ink: #17213a;
-	--color-text: #17213a;
+	--color-ink: #16253c;
+	--color-ink-hover: #24385a;
+	--color-text: #16253c;
 	--color-text-dim: #5c6577;
 
-	--color-wine: #7d2e3b;
-	--color-wine-dim: rgba(125, 46, 59, 0.1);
-	--color-gold: #a6822f;
+	/* Dorado de marca: para filetes, bordes y decoración (no apto para texto pequeño). */
+	--color-gold: #b49048;
+	/* Dorado oscuro accesible (AA sobre crema): para texto pequeño y enlaces con acento cálido. */
+	--color-gold-text: #8a6a24;
 
 	--font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
 	--font-body: 'Public Sans', system-ui, sans-serif;
@@ -89,7 +91,7 @@ button {
 	font-size: 0.76rem;
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
-	color: var(--color-wine);
+	color: var(--color-gold-text);
 }
 
 .text-dim {
@@ -134,7 +136,7 @@ button {
 }
 
 .btn-primary:hover {
-	background: var(--color-wine);
+	background: var(--color-ink-hover);
 }
 
 .btn-ghost {
@@ -144,8 +146,8 @@ button {
 }
 
 .btn-ghost:hover {
-	border-color: var(--color-wine);
-	color: var(--color-wine);
+	border-color: var(--color-gold);
+	color: var(--color-ink);
 }
 
 .reveal {

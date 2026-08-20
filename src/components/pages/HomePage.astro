@@ -136,7 +136,7 @@ const t = UI[lang];
 
 <Layout title={t.title} description={t.description} lang={lang} slug="">
 	<section class="hero">
-		<div class="container">
+		<div class="container hero-grid">
 			<div class="hero-inner reveal">
 				<p class="eyebrow">{t.eyebrow}</p>
 				<hr class="rule-gold" />
@@ -148,6 +148,20 @@ const t = UI[lang];
 					<a href={localizedPath('/contacto', lang)} class="btn btn-primary">{t.ctaContacto}</a>
 					<a href={localizedPath('/servicios', lang)} class="btn btn-ghost">{t.ctaServicios}</a>
 				</div>
+			</div>
+			<div class="hero-media reveal">
+				<picture>
+					<source srcset="/pilar-nieto.webp" type="image/webp" />
+					<img
+						src="/pilar-nieto.jpg"
+						width="900"
+						height="1200"
+						alt="Pilar Nieto Pérez, asesora fiscal en Valencia"
+						loading="eager"
+						fetchpriority="high"
+						decoding="async"
+					/>
+				</picture>
 			</div>
 		</div>
 	</section>
@@ -199,8 +213,42 @@ const t = UI[lang];
 		padding-block: 4.5rem 3rem;
 	}
 
+	.hero-grid {
+		display: grid;
+		grid-template-columns: 1.05fr 0.95fr;
+		gap: clamp(2rem, 5vw, 4rem);
+		align-items: center;
+	}
+
 	.hero-inner {
-		max-width: 62ch;
+		max-width: 60ch;
+	}
+
+	.hero-media {
+		position: relative;
+	}
+
+	.hero-media picture {
+		display: block;
+	}
+
+	.hero-media img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 4px;
+		border: 1px solid var(--color-border);
+		box-shadow: 0 24px 50px -30px rgba(22, 37, 60, 0.55);
+	}
+
+	.hero-media::after {
+		content: '';
+		position: absolute;
+		inset: 14px -14px -14px 14px;
+		border: 1.5px solid var(--color-gold);
+		border-radius: 4px;
+		z-index: -1;
+		pointer-events: none;
 	}
 
 	.hero-inner h1 {
@@ -209,7 +257,7 @@ const t = UI[lang];
 
 	.hero-inner h1 em {
 		font-style: italic;
-		color: var(--color-wine);
+		color: var(--color-gold-text);
 	}
 
 	.hero-subtitle {
@@ -249,7 +297,7 @@ const t = UI[lang];
 		margin-block-start: 1.25rem;
 		font-size: 0.92rem;
 		font-weight: 600;
-		color: var(--color-wine);
+		color: var(--color-gold-text);
 		text-decoration: none;
 	}
 
@@ -276,7 +324,7 @@ const t = UI[lang];
 	}
 
 	.articulo:hover {
-		color: var(--color-wine);
+		color: var(--color-gold-text);
 		padding-inline-start: 0.5rem;
 	}
 
@@ -285,7 +333,7 @@ const t = UI[lang];
 		width: 5.5ch;
 		font-family: var(--font-mono);
 		font-size: 0.82rem;
-		color: var(--color-gold);
+		color: var(--color-gold-text);
 	}
 
 	.articulo-t {
@@ -320,5 +368,24 @@ const t = UI[lang];
 
 	.cta-final-inner .btn {
 		margin-block-start: 0.5rem;
+	}
+
+	@media (max-width: 860px) {
+		.hero {
+			padding-block: 3rem 2rem;
+		}
+
+		.hero-grid {
+			grid-template-columns: 1fr;
+			gap: 2.25rem;
+		}
+
+		.hero-media {
+			max-width: 340px;
+		}
+
+		.hero-media::after {
+			display: none;
+		}
 	}
 </style>

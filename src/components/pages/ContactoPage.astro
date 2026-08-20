@@ -14,49 +14,121 @@ const { lang = 'es' } = Astro.props;
 const UI = {
 	es: {
 		title: 'Contacto — Pilar Nieto Pérez',
-		description: 'Contacta con Pilar Nieto Pérez, asesora fiscal en Valencia, por email o LinkedIn.',
+		description: 'Contacta con Pilar Nieto Pérez, asesora fiscal en Valencia, por email, formulario o LinkedIn.',
 		eyebrow: 'Contacto',
 		heading: '¿Hablamos de tu situación fiscal?',
-		intro: 'Escríbeme por correo o contacta a través de LinkedIn. Respondo personalmente cada consulta.',
+		intro: 'Escríbeme por correo, rellena el formulario o contacta a través de LinkedIn. Respondo personalmente cada consulta.',
 		email: 'Email',
 		linkedin: 'LinkedIn',
 		verPerfil: 'Ver perfil',
+		form: {
+			title: 'Escríbeme directamente',
+			name: 'Nombre',
+			email: 'Email',
+			message: 'Mensaje',
+			submit: 'Enviar mensaje',
+			sending: 'Enviando…',
+			success: '¡Gracias! Tu mensaje se ha enviado. Te responderé lo antes posible.',
+			error: 'No se ha podido enviar. Escríbeme directamente a pilarnietop@outlook.com.',
+			privacy: 'Tus datos se usan solo para responder a tu consulta.',
+		},
+		location: {
+			title: 'Ubicación',
+			mapTitle: 'Mapa de ubicación en Valencia',
+		},
 	},
 	en: {
 		title: 'Contact — Pilar Nieto Pérez',
-		description: 'Get in touch with Pilar Nieto Pérez, tax advisor in Valencia, by email or LinkedIn.',
+		description: 'Get in touch with Pilar Nieto Pérez, tax advisor in Valencia, by email, form or LinkedIn.',
 		eyebrow: 'Contact',
 		heading: 'Shall we talk about your tax situation?',
-		intro: 'Write to me by email or reach out on LinkedIn. I answer every enquiry personally.',
+		intro: 'Write to me by email, fill in the form or reach out on LinkedIn. I answer every enquiry personally.',
 		email: 'Email',
 		linkedin: 'LinkedIn',
 		verPerfil: 'View profile',
+		form: {
+			title: 'Send me a message',
+			name: 'Name',
+			email: 'Email',
+			message: 'Message',
+			submit: 'Send message',
+			sending: 'Sending…',
+			success: 'Thank you! Your message has been sent. I’ll get back to you as soon as possible.',
+			error: 'Something went wrong. Please email me directly at pilarnietop@outlook.com.',
+			privacy: 'Your details are used only to reply to your enquiry.',
+		},
+		location: {
+			title: 'Location',
+			mapTitle: 'Location map in Valencia',
+		},
 	},
 	ca: {
 		title: 'Contacte — Pilar Nieto Pérez',
-		description: "Contacta amb Pilar Nieto Pérez, assessora fiscal a València, per email o LinkedIn.",
+		description: 'Contacta amb Pilar Nieto Pérez, assessora fiscal a València, per email, formulari o LinkedIn.',
 		eyebrow: 'Contacte',
 		heading: 'Parlem de la teva situació fiscal?',
-		intro: "Escriu-me per correu o contacta a través de LinkedIn. Responc personalment cada consulta.",
+		intro: 'Escriu-me per correu, omple el formulari o contacta a través de LinkedIn. Responc personalment cada consulta.',
 		email: 'Email',
 		linkedin: 'LinkedIn',
 		verPerfil: 'Veure perfil',
+		form: {
+			title: 'Escriu-me directament',
+			name: 'Nom',
+			email: 'Email',
+			message: 'Missatge',
+			submit: 'Enviar missatge',
+			sending: 'Enviant…',
+			success: 'Gràcies! El teu missatge s’ha enviat. Et respondré al més aviat possible.',
+			error: 'No s’ha pogut enviar. Escriu-me directament a pilarnietop@outlook.com.',
+			privacy: 'Les teves dades s’utilitzen només per respondre la teva consulta.',
+		},
+		location: {
+			title: 'Ubicació',
+			mapTitle: 'Mapa d’ubicació a València',
+		},
 	},
 	ru: {
 		title: 'Контакты — Пилар Ньето Перес',
-		description: 'Свяжитесь с Пилар Ньето Перес, налоговым консультантом в Валенсии, по почте или через LinkedIn.',
+		description: 'Свяжитесь с Пилар Ньето Перес, налоговым консультантом в Валенсии, по почте, через форму или LinkedIn.',
 		eyebrow: 'Контакты',
 		heading: 'Обсудим вашу налоговую ситуацию?',
-		intro: 'Напишите мне на почту или свяжитесь через LinkedIn. Я лично отвечаю на каждое обращение.',
+		intro: 'Напишите мне на почту, заполните форму или свяжитесь через LinkedIn. Я лично отвечаю на каждое обращение.',
 		email: 'Email',
 		linkedin: 'LinkedIn',
 		verPerfil: 'Открыть профиль',
+		form: {
+			title: 'Напишите мне',
+			name: 'Имя',
+			email: 'Email',
+			message: 'Сообщение',
+			submit: 'Отправить сообщение',
+			sending: 'Отправка…',
+			success: 'Спасибо! Ваше сообщение отправлено. Я отвечу вам как можно скорее.',
+			error: 'Не удалось отправить. Напишите мне напрямую: pilarnietop@outlook.com.',
+			privacy: 'Ваши данные используются только для ответа на ваш запрос.',
+		},
+		location: {
+			title: 'Расположение',
+			mapTitle: 'Карта расположения в Валенсии',
+		},
 	},
 } as const;
 
 const t = UI[lang];
 const EMAIL = 'pilarnietop@outlook.com';
 const LINKEDIN = 'https://www.linkedin.com/in/pilar-nieto-pérez-020b0320a';
+
+// --- Formulario de contacto (Web3Forms) ---
+// Consigue una clave GRATIS en https://web3forms.com (solo con el email de Pilar)
+// y pégala aquí. Sin una clave válida el formulario no enviará.
+const WEB3FORMS_ACCESS_KEY = 'PON_AQUI_TU_ACCESS_KEY';
+
+// --- Ubicación ---
+// Cambia la dirección y la consulta del mapa cuando tengas el despacho definitivo.
+// Si Pilar no atiende en un despacho físico, puedes borrar la sección de ubicación.
+const ADDRESS = 'Dirección por confirmar · Valencia, España';
+const MAP_QUERY = 'Valencia, España';
+const MAP_SRC = `https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&output=embed`;
 ---
 
 <Layout title={t.title} description={t.description} lang={lang} slug="contacto">
@@ -81,9 +153,99 @@ const LINKEDIN = 'https://www.linkedin.com/in/pilar-nieto-pérez-020b0320a';
 					</span>
 				</a>
 			</div>
+
+			<form
+				id="contact-form"
+				class="contact-form reveal"
+				action="https://api.web3forms.com/submit"
+				method="POST"
+				data-sending={t.form.sending}
+				data-success={t.form.success}
+				data-error={t.form.error}
+			>
+				<h2 class="contact-form-title">{t.form.title}</h2>
+
+				<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+				<input type="hidden" name="subject" value="Nuevo mensaje desde la web de Pilar Nieto" />
+				<input type="hidden" name="from_name" value="Web Pilar Nieto Pérez" />
+				<input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+				<div class="field">
+					<label for="cf-name">{t.form.name}</label>
+					<input id="cf-name" name="name" type="text" required autocomplete="name" />
+				</div>
+
+				<div class="field">
+					<label for="cf-email">{t.form.email}</label>
+					<input id="cf-email" name="email" type="email" required autocomplete="email" />
+				</div>
+
+				<div class="field">
+					<label for="cf-message">{t.form.message}</label>
+					<textarea id="cf-message" name="message" rows="5" required></textarea>
+				</div>
+
+				<div class="form-footer">
+					<button type="submit" class="btn btn-primary">{t.form.submit}</button>
+					<p class="form-privacy text-dim">{t.form.privacy}</p>
+				</div>
+
+				<p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+			</form>
+
+			<div class="location reveal">
+				<h2 class="location-title">{t.location.title}</h2>
+				<p class="location-address">{ADDRESS}</p>
+				<div class="map-wrap">
+					<iframe
+						title={t.location.mapTitle}
+						src={MAP_SRC}
+						loading="lazy"
+						referrerpolicy="no-referrer-when-downgrade"
+					></iframe>
+				</div>
+			</div>
 		</div>
 	</section>
 </Layout>
+
+<script>
+	const form = document.getElementById('contact-form');
+	if (form instanceof HTMLFormElement) {
+		const status = document.getElementById('form-status');
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+			const data = new FormData(form);
+			if (status) {
+				status.textContent = form.dataset.sending ?? '';
+				status.className = 'form-status is-pending';
+			}
+			try {
+				const response = await fetch('https://api.web3forms.com/submit', {
+					method: 'POST',
+					headers: { Accept: 'application/json' },
+					body: data,
+				});
+				const result = await response.json();
+				if (response.ok && result.success) {
+					form.reset();
+					if (status) {
+						status.textContent = form.dataset.success ?? '';
+						status.className = 'form-status is-ok';
+					}
+				} else if (status) {
+					status.textContent = form.dataset.error ?? '';
+					status.className = 'form-status is-err';
+				}
+			} catch {
+				if (status) {
+					status.textContent = form.dataset.error ?? '';
+					status.className = 'form-status is-err';
+				}
+			}
+		});
+	}
+</script>
 
 <style>
 	.contact {
@@ -111,15 +273,15 @@ const LINKEDIN = 'https://www.linkedin.com/in/pilar-nieto-pérez-020b0320a';
 	}
 
 	.contact-card:hover {
-		border-color: var(--color-wine);
-		border-inline-start-color: var(--color-wine);
+		border-color: var(--color-gold);
+		border-inline-start-color: var(--color-gold);
 		transform: translateY(-2px);
 	}
 
 	.contact-card-icon {
 		flex-shrink: 0;
 		display: inline-flex;
-		color: var(--color-wine);
+		color: var(--color-gold-text);
 	}
 
 	.contact-card-icon :global(svg) {
@@ -147,5 +309,134 @@ const LINKEDIN = 'https://www.linkedin.com/in/pilar-nieto-pérez-020b0320a';
 		font-weight: 500;
 		font-size: 1.02rem;
 		word-break: break-word;
+	}
+
+	/* --- Formulario --- */
+	.contact-form {
+		max-width: 640px;
+		margin-block-start: 3.25rem;
+	}
+
+	.contact-form-title {
+		font-size: 1.4rem;
+		font-weight: 600;
+		margin-block-end: 1.5rem;
+	}
+
+	.hp {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+		margin-block-end: 1.1rem;
+	}
+
+	.field label {
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--color-gold-text);
+	}
+
+	.field input,
+	.field textarea {
+		font-family: var(--font-body);
+		font-size: 1rem;
+		color: var(--color-ink);
+		background: var(--color-bg-elevated);
+		border: 1px solid var(--color-border);
+		border-radius: 2px;
+		padding: 0.7rem 0.85rem;
+		width: 100%;
+		transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+	}
+
+	.field input:focus,
+	.field textarea:focus {
+		outline: none;
+		border-color: var(--color-gold);
+		box-shadow: 0 0 0 3px rgba(180, 144, 72, 0.18);
+	}
+
+	.field textarea {
+		resize: vertical;
+		min-height: 120px;
+	}
+
+	.form-footer {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1.25rem;
+		margin-block-start: 0.5rem;
+	}
+
+	.form-privacy {
+		font-size: 0.82rem;
+		margin: 0;
+	}
+
+	.form-status {
+		margin-block-start: 1rem;
+		font-size: 0.92rem;
+		min-height: 1.2em;
+	}
+
+	.form-status.is-pending {
+		color: var(--color-text-dim);
+	}
+
+	.form-status.is-ok {
+		color: #1b6b44;
+	}
+
+	.form-status.is-err {
+		color: #b23b3b;
+	}
+
+	/* --- Ubicación --- */
+	.location {
+		max-width: 720px;
+		margin-block-start: 3.5rem;
+		padding-block-start: 2.5rem;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.location-title {
+		font-size: 1.4rem;
+		font-weight: 600;
+		margin-block-end: 0.6rem;
+	}
+
+	.location-address {
+		font-family: var(--font-display);
+		font-weight: 500;
+		font-size: 1.05rem;
+		margin-block-end: 1.25rem;
+	}
+
+	.map-wrap {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		border: 1px solid var(--color-border);
+		border-inline-start: 2px solid var(--color-gold);
+		border-radius: 2px;
+		overflow: hidden;
+	}
+
+	.map-wrap iframe {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
 	}
 </style>

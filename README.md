@@ -43,6 +43,8 @@ Todo el texto visible está en los archivos de `src/components/pages/*.astro`, d
 
 ## Antes de publicarla
 
-- Cambia `site` en `astro.config.mjs` por tu dominio definitivo.
+- **Formulario de contacto:** consigue una clave gratuita en [web3forms.com](https://web3forms.com) (solo con el email de Pilar) y pégala en `WEB3FORMS_ACCESS_KEY`, dentro de `src/components/pages/ContactoPage.astro`. Sin una clave válida, el formulario no envía.
+- **Ubicación:** en ese mismo archivo, ajusta `ADDRESS` y `MAP_QUERY` con la dirección real en Valencia (o elimina la sección `.location` si no hay despacho físico).
+- Cambia `site` en `astro.config.mjs` por tu dominio definitivo (ahora apunta a `https://pilarnietofiscal.com`).
 - Revisa `src/components/pages/AvisoLegalPage.astro`: es un modelo básico y te recomiendo que lo valide un profesional del derecho antes de publicar la web.
-- Si más adelante quieres analítica de visitas, formulario de contacto con backend, o un dominio propio conectado, se puede añadir sin tocar el resto de la estructura.
+- Los recursos de marca (logo, foto, favicon e imagen para compartir) están en `public/`.

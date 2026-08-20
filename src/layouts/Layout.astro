@@ -15,6 +15,9 @@ const { title, description, lang, slug = '', noindex = false } = Astro.props;
 const t = strings[lang];
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og-image.png', Astro.site);
+const ogLocaleMap = { es: 'es_ES', en: 'en_GB', ca: 'ca_ES', ru: 'ru_RU' } as const;
+const ogLocale = ogLocaleMap[lang];
 
 const navLinks = [
 	{ href: localizedPath('/sobre-mi', lang), label: t.nav.laFirma, key: 'sobre-mi' },
@@ -41,10 +44,25 @@ const langLinks = [
 		{noindex && <meta name="robots" content="noindex,nofollow" />}
 		<link rel="canonical" href={canonicalURL} />
 
+		<link rel="icon" href="/favicon.ico" sizes="any" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<meta name="theme-color" content="#16253c" />
+
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:site_name" content="Pilar Nieto Pérez — Asesora Fiscal" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:locale" content={ogLocale} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Pilar Nieto Pérez — Asesoría Fiscal" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -56,8 +74,8 @@ const langLinks = [
 	<body>
 		<header id="site-header">
 			<div class="container nav-inner">
-				<a href={localizedPath('/', lang)} class="brand">
-					<span class="brand-mark">PN</span>
+				<a href={localizedPath('/', lang)} class="brand" aria-label="Pilar Nieto Pérez — Asesoría Fiscal">
+					<img class="brand-mark" src="/logo-mark.png" alt="" width="40" height="40" decoding="async" />
 					<span class="brand-name">Pilar Nieto <em>Pérez</em></span>
 				</a>
 
@@ -104,6 +122,7 @@ const langLinks = [
 		<footer>
 			<div class="container footer-inner">
 				<div class="footer-brand">
+					<img class="footer-mark" src="/logo-mark.png" alt="" width="46" height="46" loading="lazy" decoding="async" />
 					<p class="footer-name">Pilar Nieto Pérez</p>
 					<p class="text-dim">{t.footer.tagline}</p>
 				</div>
@@ -193,16 +212,10 @@ const langLinks = [
 	}
 
 	.brand-mark {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 34px;
-		height: 34px;
-		border: 1px solid var(--color-gold);
-		font-family: var(--font-display);
-		font-size: 0.85rem;
-		font-weight: 600;
-		color: var(--color-wine);
+		width: 40px;
+		height: 40px;
+		object-fit: contain;
+		flex-shrink: 0;
 	}
 
 	.brand-name {
@@ -213,7 +226,7 @@ const langLinks = [
 
 	.brand-name em {
 		font-style: italic;
-		color: var(--color-wine);
+		color: var(--color-gold-text);
 	}
 
 	#site-nav ul {
@@ -237,7 +250,7 @@ const langLinks = [
 	}
 
 	#site-nav a[aria-current='page'] {
-		color: var(--color-wine);
+		color: var(--color-ink);
 	}
 
 	.nav-actions {
@@ -262,7 +275,7 @@ const langLinks = [
 	}
 
 	.lang-switch a[aria-current='true'] {
-		color: var(--color-wine);
+		color: var(--color-ink);
 		font-weight: 600;
 	}
 
@@ -310,6 +323,13 @@ const langLinks = [
 		padding-block-end: 1.75rem;
 	}
 
+	.footer-mark {
+		width: 46px;
+		height: 46px;
+		object-fit: contain;
+		margin-block-end: 0.7rem;
+	}
+
 	.footer-name {
 		font-family: var(--font-display);
 		font-weight: 600;
@@ -332,7 +352,7 @@ const langLinks = [
 	}
 
 	.footer-links a:hover {
-		color: var(--color-wine);
+		color: var(--color-ink);
 	}
 
 	.footer-copy {
