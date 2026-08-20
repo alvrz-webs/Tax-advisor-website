@@ -32,10 +32,6 @@ const UI = {
 			error: 'No se ha podido enviar. Escríbeme directamente a pilarnietop@outlook.com.',
 			privacy: 'Tus datos se usan solo para responder a tu consulta.',
 		},
-		location: {
-			title: 'Ubicación',
-			mapTitle: 'Mapa de ubicación en Valencia',
-		},
 	},
 	en: {
 		title: 'Contact — Pilar Nieto Pérez',
@@ -56,10 +52,6 @@ const UI = {
 			success: 'Thank you! Your message has been sent. I’ll get back to you as soon as possible.',
 			error: 'Something went wrong. Please email me directly at pilarnietop@outlook.com.',
 			privacy: 'Your details are used only to reply to your enquiry.',
-		},
-		location: {
-			title: 'Location',
-			mapTitle: 'Location map in Valencia',
 		},
 	},
 	ca: {
@@ -82,10 +74,6 @@ const UI = {
 			error: 'No s’ha pogut enviar. Escriu-me directament a pilarnietop@outlook.com.',
 			privacy: 'Les teves dades s’utilitzen només per respondre la teva consulta.',
 		},
-		location: {
-			title: 'Ubicació',
-			mapTitle: 'Mapa d’ubicació a València',
-		},
 	},
 	ru: {
 		title: 'Контакты — Пилар Ньето Перес',
@@ -107,10 +95,6 @@ const UI = {
 			error: 'Не удалось отправить. Напишите мне напрямую: pilarnietop@outlook.com.',
 			privacy: 'Ваши данные используются только для ответа на ваш запрос.',
 		},
-		location: {
-			title: 'Расположение',
-			mapTitle: 'Карта расположения в Валенсии',
-		},
 	},
 } as const;
 
@@ -121,14 +105,7 @@ const LINKEDIN = 'https://www.linkedin.com/in/pilar-nieto-pérez-020b0320a';
 // --- Formulario de contacto (Web3Forms) ---
 // Consigue una clave GRATIS en https://web3forms.com (solo con el email de Pilar)
 // y pégala aquí. Sin una clave válida el formulario no enviará.
-const WEB3FORMS_ACCESS_KEY = 'PON_AQUI_TU_ACCESS_KEY';
-
-// --- Ubicación ---
-// Cambia la dirección y la consulta del mapa cuando tengas el despacho definitivo.
-// Si Pilar no atiende en un despacho físico, puedes borrar la sección de ubicación.
-const ADDRESS = 'Dirección por confirmar · Valencia, España';
-const MAP_QUERY = 'Valencia, España';
-const MAP_SRC = `https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&output=embed`;
+const WEB3FORMS_ACCESS_KEY = 'b018fa7d-eaf3-4a52-a2a7-e72d6b540c37';
 ---
 
 <Layout title={t.title} description={t.description} lang={lang} slug="contacto">
@@ -192,19 +169,6 @@ const MAP_SRC = `https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&
 
 				<p class="form-status" id="form-status" role="status" aria-live="polite"></p>
 			</form>
-
-			<div class="location reveal">
-				<h2 class="location-title">{t.location.title}</h2>
-				<p class="location-address">{ADDRESS}</p>
-				<div class="map-wrap">
-					<iframe
-						title={t.location.mapTitle}
-						src={MAP_SRC}
-						loading="lazy"
-						referrerpolicy="no-referrer-when-downgrade"
-					></iframe>
-				</div>
-			</div>
 		</div>
 	</section>
 </Layout>
@@ -400,43 +364,5 @@ const MAP_SRC = `https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&
 
 	.form-status.is-err {
 		color: #b23b3b;
-	}
-
-	/* --- Ubicación --- */
-	.location {
-		max-width: 720px;
-		margin-block-start: 3.5rem;
-		padding-block-start: 2.5rem;
-		border-top: 1px solid var(--color-border);
-	}
-
-	.location-title {
-		font-size: 1.4rem;
-		font-weight: 600;
-		margin-block-end: 0.6rem;
-	}
-
-	.location-address {
-		font-family: var(--font-display);
-		font-weight: 500;
-		font-size: 1.05rem;
-		margin-block-end: 1.25rem;
-	}
-
-	.map-wrap {
-		position: relative;
-		aspect-ratio: 16 / 9;
-		border: 1px solid var(--color-border);
-		border-inline-start: 2px solid var(--color-gold);
-		border-radius: 2px;
-		overflow: hidden;
-	}
-
-	.map-wrap iframe {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		border: 0;
 	}
 </style>

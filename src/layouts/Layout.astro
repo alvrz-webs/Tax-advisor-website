@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { type Locale, localizedPath, strings } from '../lib/i18n';
+import SocialLinks from '../components/SocialLinks.astro';
 
 interface Props {
 	title: string;
@@ -125,17 +126,16 @@ const langLinks = [
 					<img class="footer-mark" src="/logo-mark.png" alt="" width="46" height="46" loading="lazy" decoding="async" />
 					<p class="footer-name">Pilar Nieto Pérez</p>
 					<p class="text-dim">{t.footer.tagline}</p>
+					<SocialLinks
+						email="pilarnietop@outlook.com"
+						linkedin="https://www.linkedin.com/in/pilar-nieto-pérez-020b0320a"
+						ariaLabel={t.footer.ariaSocial}
+						emailLabel={t.footer.emailLabel}
+						linkedinLabel={t.footer.linkedinLabel}
+					/>
 				</div>
 
 				<div class="footer-links">
-					<a href="mailto:pilarnietop@outlook.com">pilarnietop@outlook.com</a>
-					<a
-						href="https://www.linkedin.com/in/pilar-nieto-pérez-020b0320a"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						LinkedIn
-					</a>
 					<a href={localizedPath('/aviso-legal', lang)}>{t.footer.avisoLegal}</a>
 				</div>
 			</div>
@@ -335,6 +335,10 @@ const langLinks = [
 		font-weight: 600;
 		font-size: 1.05rem;
 		margin-block-end: 0.3rem;
+	}
+
+	.footer-brand :global(.social-links) {
+		margin-block-start: 0.9rem;
 	}
 
 	.footer-links {
