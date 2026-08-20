@@ -1,0 +1,402 @@
+---
+import '../styles/global.css';
+import { type Locale, localizedPath, strings } from '../lib/i18n';
+
+interface Props {
+	title: string;
+	description: string;
+	lang: Locale;
+	/** Slug de la página actual sin idioma delante, p.ej. '', 'sobre-mi', 'servicios', 'contacto' */
+	slug?: string;
+	noindex?: boolean;
+}
+
+const { title, description, lang, slug = '', noindex = false } = Astro.props;
+const t = strings[lang];
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const navLinks = [
+	{ href: localizedPath('/sobre-mi', lang), label: t.nav.laFirma, key: 'sobre-mi' },
+	{ href: localizedPath('/servicios', lang), label: t.nav.servicios, key: 'servicios' },
+	{ href: localizedPath('/contacto', lang), label: t.nav.contacto, key: 'contacto' },
+];
+
+const langLinks = [
+	{ code: 'es', label: 'ES', href: slug ? `/${slug}` : '/' },
+	{ code: 'en', label: 'EN', href: slug ? `/en/${slug}` : '/en' },
+	{ code: 'ca', label: 'CA', href: slug ? `/ca/${slug}` : '/ca' },
+	{ code: 'ru', label: 'RU', href: slug ? `/ru/${slug}` : '/ru' },
+] as const;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		{noindex && <meta name="robots" content="noindex,nofollow" />}
+		<link rel="canonical" href={canonicalURL} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content="Pilar Nieto Pérez — Asesora Fiscal" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<header id="site-header">
+			<div class="container nav-inner">
+				<a href={localizedPath('/', lang)} class="brand">
+					<span class="brand-mark">PN</span>
+					<span class="brand-name">Pilar Nieto <em>Pérez</em></span>
+				</a>
+
+				<nav id="site-nav" aria-label={t.nav.ariaMain}>
+					<ul>
+						{
+							navLinks.map((link) => (
+								<li>
+									<a href={link.href} aria-current={slug === link.key ? 'page' : undefined}>
+										{link.label}
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</nav>
+
+				<div class="nav-actions">
+					<div class="lang-switch" aria-label={t.langSwitch.label}>
+						{
+							langLinks.map((l) => (
+								<a href={l.href} aria-current={lang === l.code ? 'true' : undefined}>
+									{l.label}
+								</a>
+							))
+						}
+					</div>
+					<a href={localizedPath('/contacto', lang)} class="btn btn-primary btn-nav">
+						{t.nav.contacto}
+					</a>
+					<button id="nav-toggle" aria-label={t.nav.openMenu} aria-expanded="false" aria-controls="site-nav">
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+				</div>
+			</div>
+		</header>
+
+		<main>
+			<slot />
+		</main>
+
+		<footer>
+			<div class="container footer-inner">
+				<div class="footer-brand">
+					<p class="footer-name">Pilar Nieto Pérez</p>
+					<p class="text-dim">{t.footer.tagline}</p>
+				</div>
+
+				<div class="footer-links">
+					<a href="mailto:pilarnietop@outlook.com">pilarnietop@outlook.com</a>
+					<a
+						href="https://www.linkedin.com/in/pilar-nieto-pérez-020b0320a"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						LinkedIn
+					</a>
+					<a href={localizedPath('/aviso-legal', lang)}>{t.footer.avisoLegal}</a>
+				</div>
+			</div>
+			<div class="container">
+				<p class="footer-copy text-dim">{t.footer.copy(new Date().getFullYear())}</p>
+			</div>
+		</footer>
+
+		<script>
+			const toggle = document.getElementById('nav-toggle');
+			const nav = document.getElementById('site-nav');
+
+			toggle?.addEventListener('click', () => {
+				const isOpen = nav?.classList.toggle('is-open');
+				toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+			});
+
+			nav?.querySelectorAll('a').forEach((link) => {
+				link.addEventListener('click', () => {
+					nav.classList.remove('is-open');
+					toggle?.setAttribute('aria-expanded', 'false');
+				});
+			});
+
+			const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			const revealEls = document.querySelectorAll('.reveal');
+
+			if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+				revealEls.forEach((el) => el.classList.add('is-visible'));
+			} else {
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add('is-visible');
+								observer.unobserve(entry.target);
+							}
+						});
+					},
+					{ threshold: 0.15, rootMargin: '0px 0px -40px 0px' },
+				);
+
+				revealEls.forEach((el) => observer.observe(el));
+			}
+		</script>
+	</body>
+</html>
+
+<style>
+	#site-header {
+		position: sticky;
+		inset-block-start: 0;
+		z-index: 100;
+		background: color-mix(in srgb, var(--color-bg) 88%, transparent);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.nav-inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding-block: 1rem;
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		text-decoration: none;
+		color: var(--color-ink);
+	}
+
+	.brand-mark {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 34px;
+		height: 34px;
+		border: 1px solid var(--color-gold);
+		font-family: var(--font-display);
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: var(--color-wine);
+	}
+
+	.brand-name {
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: 1.02rem;
+	}
+
+	.brand-name em {
+		font-style: italic;
+		color: var(--color-wine);
+	}
+
+	#site-nav ul {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		list-style: none;
+	}
+
+	#site-nav a {
+		text-decoration: none;
+		color: var(--color-text-dim);
+		font-size: 0.9rem;
+		font-weight: 500;
+		letter-spacing: 0.01em;
+		transition: color var(--transition-fast);
+	}
+
+	#site-nav a:hover {
+		color: var(--color-ink);
+	}
+
+	#site-nav a[aria-current='page'] {
+		color: var(--color-wine);
+	}
+
+	.nav-actions {
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+	}
+
+	.lang-switch {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--color-text-dim);
+	}
+
+	.lang-switch a {
+		text-decoration: none;
+		color: var(--color-text-dim);
+		transition: color var(--transition-fast);
+	}
+
+	.lang-switch a[aria-current='true'] {
+		color: var(--color-wine);
+		font-weight: 600;
+	}
+
+	.lang-switch a:hover {
+		color: var(--color-ink);
+	}
+
+	.btn-nav {
+		padding: 0.6rem 1.15rem;
+		font-size: 0.85rem;
+	}
+
+	#nav-toggle {
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		gap: 5px;
+		width: 38px;
+		height: 38px;
+		background: transparent;
+		border: 1px solid var(--color-border);
+		cursor: pointer;
+	}
+
+	#nav-toggle span {
+		display: block;
+		height: 1.5px;
+		margin-inline: 8px;
+		background: var(--color-ink);
+		transition: transform var(--transition-fast), opacity var(--transition-fast);
+	}
+
+	footer {
+		border-top: 1px solid var(--color-border);
+		padding-block: 3rem 1.5rem;
+		margin-block-start: 4rem;
+	}
+
+	.footer-inner {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 1.5rem;
+		padding-block-end: 1.75rem;
+	}
+
+	.footer-name {
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: 1.05rem;
+		margin-block-end: 0.3rem;
+	}
+
+	.footer-links {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		text-align: right;
+		font-size: 0.9rem;
+	}
+
+	.footer-links a {
+		text-decoration: none;
+		color: var(--color-text-dim);
+		transition: color var(--transition-fast);
+	}
+
+	.footer-links a:hover {
+		color: var(--color-wine);
+	}
+
+	.footer-copy {
+		font-size: 0.8rem;
+		border-top: 1px solid var(--color-border);
+		padding-block-start: 1.25rem;
+	}
+
+	@media (max-width: 820px) {
+		#site-nav {
+			position: fixed;
+			inset-block-start: 66px;
+			inset-inline: 0;
+			background: color-mix(in srgb, var(--color-bg) 98%, transparent);
+			backdrop-filter: blur(10px);
+			border-bottom: 1px solid var(--color-border);
+			transform: translateY(-8px);
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+			transition:
+				opacity var(--transition-fast),
+				transform var(--transition-fast),
+				visibility var(--transition-fast);
+		}
+
+		#site-nav.is-open {
+			opacity: 1;
+			transform: translateY(0);
+			visibility: visible;
+			pointer-events: auto;
+		}
+
+		#site-nav ul {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0;
+			padding: 1rem 1.5rem 1.5rem;
+		}
+
+		#site-nav ul li {
+			width: 100%;
+			border-bottom: 1px solid var(--color-border);
+		}
+
+		#site-nav a {
+			display: block;
+			padding: 0.9rem 0;
+		}
+
+		.btn-nav {
+			display: none;
+		}
+
+		#nav-toggle {
+			display: flex;
+		}
+
+		.footer-inner {
+			flex-direction: column;
+		}
+
+		.footer-links {
+			text-align: left;
+		}
+	}
+</style>

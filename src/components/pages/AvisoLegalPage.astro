@@ -1,0 +1,104 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../PageHeader.astro';
+import { type Locale } from '../../lib/i18n';
+
+interface Props {
+	lang?: Locale;
+}
+
+const { lang = 'es' } = Astro.props;
+---
+
+<Layout
+	title="Aviso legal — Pilar Nieto Pérez"
+	description="Aviso legal del sitio web de Pilar Nieto Pérez, asesora fiscal en Valencia."
+	lang={lang}
+	slug="aviso-legal"
+	noindex={true}
+>
+	<PageHeader eyebrow="Legal" title="Aviso legal" />
+
+	<section class="legal">
+		<div class="container legal-inner">
+			<article>
+				<h2>1. Titular del sitio web</h2>
+				<p class="text-dim">
+					Pilar Nieto Pérez, con domicilio profesional en Valencia, España. Contacto: <a
+						href="mailto:pilarnietop@outlook.com">pilarnietop@outlook.com</a>.
+				</p>
+			</article>
+
+			<article>
+				<h2>2. Objeto</h2>
+				<p class="text-dim">
+					Este sitio web tiene carácter informativo sobre los servicios de asesoría fiscal prestados por Pilar Nieto
+					Pérez. No constituye en sí mismo una relación de asesoramiento; esta se formaliza de forma individual con
+					cada cliente.
+				</p>
+			</article>
+
+			<article>
+				<h2>3. Datos personales</h2>
+				<p class="text-dim">
+					Este sitio no utiliza cookies de analítica ni de terceros, y no recoge datos personales de forma automática
+					durante la navegación. Los únicos datos personales que se tratan son los que la persona usuaria facilita
+					voluntariamente por correo electrónico al ponerse en contacto, y se usan exclusivamente para responder a esa
+					consulta.
+				</p>
+			</article>
+
+			<article>
+				<h2>4. Propiedad intelectual</h2>
+				<p class="text-dim">
+					Los contenidos de este sitio (textos, diseño y estructura) son propiedad de Pilar Nieto Pérez, salvo que se
+					indique lo contrario, y no pueden reproducirse sin autorización previa.
+				</p>
+			</article>
+
+			<p class="legal-note">
+				Este texto es un modelo básico de aviso legal y no sustituye el asesoramiento de un profesional del derecho.
+				Antes de publicar la web de forma definitiva, te recomiendo que lo revise un abogado o gestoría especializada
+				en protección de datos, para adaptarlo con precisión a tu actividad.
+			</p>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.legal {
+		padding-block: 1rem 6rem;
+	}
+
+	.legal-inner {
+		max-width: 70ch;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.legal-inner h2 {
+		font-size: 1.15rem;
+		font-weight: 600;
+		margin-block-end: 0.75rem;
+		padding-block-end: 0.5rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.legal-inner p {
+		font-size: 0.98rem;
+		line-height: 1.7;
+	}
+
+	.legal-inner a {
+		color: var(--color-wine);
+	}
+
+	.legal-note {
+		font-size: 0.85rem;
+		color: var(--color-text-dim);
+		font-style: italic;
+		border-inline-start: 2px solid var(--color-gold);
+		padding-inline-start: 1rem;
+	}
+</style>

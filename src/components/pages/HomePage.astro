@@ -1,0 +1,324 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { localizedPath, type Locale } from '../../lib/i18n';
+
+interface Props {
+	lang?: Locale;
+}
+
+const { lang = 'es' } = Astro.props;
+
+const UI = {
+	es: {
+		title: 'Pilar Nieto Pérez — Asesora Fiscal en Valencia',
+		description:
+			'Asesoría fiscal en Valencia: renta, IVA, autónomos, sucesiones y donaciones, y procedimientos ante la Administración.',
+		eyebrow: 'ASESORÍA FISCAL · VALENCIA',
+		title1: 'Fiscalidad clara para ',
+		titleHighlight: 'decisiones difíciles',
+		subtitle:
+			'Pilar Nieto Pérez, asesora fiscal en Valencia. Acompaño a particulares y empresas en renta, IVA, sucesiones y procedimientos ante la Administración, con criterio y cercanía.',
+		ctaContacto: 'Contactar',
+		ctaServicios: 'Áreas de práctica',
+		firmaEyebrow: 'La firma',
+		firmaTitle: 'Asesoramiento fiscal con criterio propio',
+		firmaText:
+			'Trabajo con particulares, autónomos y empresas que necesitan algo más que presentar impuestos a tiempo: necesitan entender sus números y tomar decisiones con seguridad.',
+		firmaCta: 'Conocer más',
+		serviciosEyebrow: 'Áreas de práctica',
+		serviciosTitle: 'En qué puedo ayudarte',
+		serviciosCta: 'Ver todas las áreas',
+		items: [
+			{ n: '01', t: 'Declaración de la Renta' },
+			{ n: '02', t: 'IVA' },
+			{ n: '03', t: 'Autónomos' },
+			{ n: '04', t: 'Sucesiones y Donaciones' },
+			{ n: '05', t: 'Procedimientos Administrativos' },
+		],
+		ctaFinalTitle: '¿Hablamos de tu situación fiscal?',
+		ctaFinalText: 'Escríbeme por correo o contacta a través de LinkedIn. Respondo personalmente cada consulta.',
+		ctaFinalBtn: 'Ir a contacto',
+	},
+	en: {
+		title: 'Pilar Nieto Pérez — Tax Advisor in Valencia',
+		description:
+			'Tax advisory services in Valencia: income tax, VAT, self-employment, inheritance and gift tax, and administrative proceedings.',
+		eyebrow: 'TAX ADVISORY · VALENCIA',
+		title1: 'Clear tax guidance for ',
+		titleHighlight: 'hard decisions',
+		subtitle:
+			"Pilar Nieto Pérez, tax advisor based in Valencia, Spain. I support individuals and businesses with income tax, VAT, inheritance and administrative proceedings, with clarity and close attention.",
+		ctaContacto: 'Get in touch',
+		ctaServicios: 'Practice areas',
+		firmaEyebrow: 'The firm',
+		firmaTitle: 'Tax advice with a clear point of view',
+		firmaText:
+			"I work with individuals, self-employed professionals and businesses who need more than their taxes filed on time - they need to understand their numbers and make decisions with confidence.",
+		firmaCta: 'Learn more',
+		serviciosEyebrow: 'Practice areas',
+		serviciosTitle: 'How I can help',
+		serviciosCta: 'View all areas',
+		items: [
+			{ n: '01', t: 'Income Tax Return' },
+			{ n: '02', t: 'VAT' },
+			{ n: '03', t: 'Self-Employed' },
+			{ n: '04', t: 'Inheritance & Gift Tax' },
+			{ n: '05', t: 'Administrative Proceedings' },
+		],
+		ctaFinalTitle: 'Shall we talk about your tax situation?',
+		ctaFinalText: 'Write to me by email or reach out on LinkedIn. I answer every enquiry personally.',
+		ctaFinalBtn: 'Get in touch',
+	},
+	ca: {
+		title: 'Pilar Nieto Pérez — Assessora Fiscal a València',
+		description:
+			'Assessoria fiscal a València: renda, IVA, autònoms, successions i donacions, i procediments davant l\u2019Administració.',
+		eyebrow: 'ASSESSORIA FISCAL · VALÈNCIA',
+		title1: 'Fiscalitat clara per a ',
+		titleHighlight: 'decisions difícils',
+		subtitle:
+			"Pilar Nieto Pérez, assessora fiscal a València. Acompanyo particulars i empreses en renda, IVA, successions i procediments davant l'Administració, amb criteri i proximitat.",
+		ctaContacto: 'Contacta',
+		ctaServicios: 'Àrees de pràctica',
+		firmaEyebrow: 'La firma',
+		firmaTitle: 'Assessorament fiscal amb criteri propi',
+		firmaText:
+			"Treballo amb particulars, autònoms i empreses que necessiten alguna cosa més que presentar els impostos a temps: necessiten entendre els seus números i prendre decisions amb seguretat.",
+		firmaCta: 'Conèixer més',
+		serviciosEyebrow: 'Àrees de pràctica',
+		serviciosTitle: 'En què et puc ajudar',
+		serviciosCta: 'Veure totes les àrees',
+		items: [
+			{ n: '01', t: 'Declaració de la Renda' },
+			{ n: '02', t: 'IVA' },
+			{ n: '03', t: 'Autònoms' },
+			{ n: '04', t: 'Successions i Donacions' },
+			{ n: '05', t: 'Procediments Administratius' },
+		],
+		ctaFinalTitle: 'Parlem de la teva situació fiscal?',
+		ctaFinalText: "Escriu-me per correu o contacta a través de LinkedIn. Responc personalment cada consulta.",
+		ctaFinalBtn: 'Anar a contacte',
+	},
+	ru: {
+		title: 'Пилар Ньето Перес — Налоговый консультант в Валенсии',
+		description:
+			'Налоговое консультирование в Валенсии: подоходный налог, НДС, самозанятость, налог на наследство и административные процедуры.',
+		eyebrow: 'НАЛОГОВЫЙ КОНСУЛЬТАНТ · ВАЛЕНСИЯ',
+		title1: 'Ясная налоговая стратегия для ',
+		titleHighlight: 'непростых решений',
+		subtitle:
+			'Пилар Ньето Перес, налоговый консультант в Валенсии. Помогаю частным лицам и компаниям с подоходным налогом, НДС, налогом на наследство и административными процедурами — понятно и внимательно.',
+		ctaContacto: 'Связаться',
+		ctaServicios: 'Направления работы',
+		firmaEyebrow: 'О фирме',
+		firmaTitle: 'Налоговое консультирование с чёткой позицией',
+		firmaText:
+			'Работаю с частными лицами, самозанятыми и компаниями, которым важно не просто вовремя подать декларацию, а понимать свои цифры и принимать решения с уверенностью.',
+		firmaCta: 'Узнать больше',
+		serviciosEyebrow: 'Направления работы',
+		serviciosTitle: 'Чем я могу помочь',
+		serviciosCta: 'Все направления',
+		items: [
+			{ n: '01', t: 'Декларация о доходах' },
+			{ n: '02', t: 'НДС' },
+			{ n: '03', t: 'Самозанятость' },
+			{ n: '04', t: 'Наследство и дарение' },
+			{ n: '05', t: 'Административные процедуры' },
+		],
+		ctaFinalTitle: 'Обсудим вашу налоговую ситуацию?',
+		ctaFinalText: 'Напишите мне на почту или свяжитесь через LinkedIn. Я лично отвечаю на каждое обращение.',
+		ctaFinalBtn: 'Перейти к контактам',
+	},
+} as const;
+
+const t = UI[lang];
+---
+
+<Layout title={t.title} description={t.description} lang={lang} slug="">
+	<section class="hero">
+		<div class="container">
+			<div class="hero-inner reveal">
+				<p class="eyebrow">{t.eyebrow}</p>
+				<hr class="rule-gold" />
+				<h1>
+					{t.title1}<em>{t.titleHighlight}</em>
+				</h1>
+				<p class="hero-subtitle text-dim">{t.subtitle}</p>
+				<div class="hero-actions">
+					<a href={localizedPath('/contacto', lang)} class="btn btn-primary">{t.ctaContacto}</a>
+					<a href={localizedPath('/servicios', lang)} class="btn btn-ghost">{t.ctaServicios}</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="firma-teaser">
+		<div class="container">
+			<div class="section-intro reveal">
+				<p class="eyebrow">{t.firmaEyebrow}</p>
+				<h2>{t.firmaTitle}</h2>
+				<p class="text-dim">{t.firmaText}</p>
+				<a href={localizedPath('/sobre-mi', lang)} class="link-arrow">{t.firmaCta} →</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="servicios-teaser">
+		<div class="container">
+			<div class="section-intro reveal">
+				<p class="eyebrow">{t.serviciosEyebrow}</p>
+				<h2>{t.serviciosTitle}</h2>
+			</div>
+
+			<div class="articulos reveal">
+				{
+					t.items.map((item) => (
+						<a href={localizedPath('/servicios', lang)} class="articulo">
+							<span class="articulo-n">Art. {item.n}</span>
+							<span class="articulo-t">{item.t}</span>
+						</a>
+					))
+				}
+			</div>
+
+			<a href={localizedPath('/servicios', lang)} class="link-arrow servicios-cta">{t.serviciosCta} →</a>
+		</div>
+	</section>
+
+	<section class="cta-final">
+		<div class="container cta-final-inner reveal">
+			<h2>{t.ctaFinalTitle}</h2>
+			<p class="text-dim">{t.ctaFinalText}</p>
+			<a href={localizedPath('/contacto', lang)} class="btn btn-primary">{t.ctaFinalBtn}</a>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.hero {
+		padding-block: 4.5rem 3rem;
+	}
+
+	.hero-inner {
+		max-width: 62ch;
+	}
+
+	.hero-inner h1 {
+		font-size: clamp(2.3rem, 5vw, 3.6rem);
+	}
+
+	.hero-inner h1 em {
+		font-style: italic;
+		color: var(--color-wine);
+	}
+
+	.hero-subtitle {
+		font-size: 1.1rem;
+		max-width: 52ch;
+		margin-block: 1.4rem 2rem;
+	}
+
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.firma-teaser,
+	.servicios-teaser {
+		padding-block: 3.5rem;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.section-intro {
+		max-width: 60ch;
+		margin-block-end: 2rem;
+	}
+
+	.section-intro h2 {
+		font-size: clamp(1.5rem, 3vw, 2rem);
+		margin-block: 0.9rem 1rem;
+	}
+
+	.section-intro p.text-dim {
+		font-size: 1.02rem;
+	}
+
+	.link-arrow {
+		display: inline-block;
+		margin-block-start: 1.25rem;
+		font-size: 0.92rem;
+		font-weight: 600;
+		color: var(--color-wine);
+		text-decoration: none;
+	}
+
+	.link-arrow:hover {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	.articulos {
+		display: flex;
+		flex-direction: column;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.articulo {
+		display: flex;
+		align-items: baseline;
+		gap: 1.5rem;
+		padding: 1.1rem 0.25rem;
+		border-bottom: 1px solid var(--color-border);
+		text-decoration: none;
+		color: var(--color-ink);
+		transition: color var(--transition-fast), padding-inline-start var(--transition-fast);
+	}
+
+	.articulo:hover {
+		color: var(--color-wine);
+		padding-inline-start: 0.5rem;
+	}
+
+	.articulo-n {
+		flex-shrink: 0;
+		width: 5.5ch;
+		font-family: var(--font-mono);
+		font-size: 0.82rem;
+		color: var(--color-gold);
+	}
+
+	.articulo-t {
+		font-family: var(--font-display);
+		font-size: 1.15rem;
+		font-weight: 500;
+	}
+
+	.servicios-cta {
+		margin-block-start: 1.75rem;
+	}
+
+	.cta-final {
+		border-top: 1px solid var(--color-border);
+		padding-block: 4.5rem;
+		background: var(--color-bg-elevated);
+	}
+
+	.cta-final-inner {
+		max-width: 54ch;
+		text-align: center;
+		margin-inline: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.cta-final-inner h2 {
+		font-size: clamp(1.5rem, 3vw, 2.1rem);
+	}
+
+	.cta-final-inner .btn {
+		margin-block-start: 0.5rem;
+	}
+</style>

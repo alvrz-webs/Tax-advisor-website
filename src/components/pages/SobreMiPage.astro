@@ -1,0 +1,157 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../PageHeader.astro';
+import { type Locale } from '../../lib/i18n';
+
+interface Props {
+	lang?: Locale;
+}
+
+const { lang = 'es' } = Astro.props;
+
+const UI = {
+	es: {
+		title: 'La firma — Pilar Nieto Pérez',
+		description: 'Pilar Nieto Pérez, asesora fiscal en Valencia. Rigor técnico y trato cercano en cada expediente.',
+		eyebrow: 'La firma',
+		heading: 'Asesoramiento fiscal con criterio propio',
+		bio: [
+			'Soy Pilar Nieto Pérez, asesora fiscal en Valencia. Trabajo con particulares, autónomos y empresas que necesitan algo más que presentar impuestos a tiempo: necesitan entender sus números y tomar decisiones con seguridad.',
+			'Mi enfoque combina el rigor técnico con la cercanía: explico cada gestión en términos claros, sin tecnicismos innecesarios, y me implico en cada expediente como si fuera el único que llevo.',
+			'Atiendo tanto trámites recurrentes —renta, IVA, autónomos— como situaciones más delicadas: sucesiones y donaciones, o procedimientos administrativos ante la Agencia Tributaria.',
+		],
+		facts: [
+			{ label: 'Sede', value: 'Valencia' },
+			{ label: 'Idiomas', value: 'Español · Català · English · Русский' },
+			{ label: 'Enfoque', value: 'Fiscalidad de particulares y empresas' },
+			{ label: 'Disponibilidad', value: 'Nuevos clientes bienvenidos' },
+		],
+	},
+	en: {
+		title: 'The firm — Pilar Nieto Pérez',
+		description: 'Pilar Nieto Pérez, tax advisor in Valencia. Technical rigour and a personal touch in every case.',
+		eyebrow: 'The firm',
+		heading: 'Tax advice with a clear point of view',
+		bio: [
+			"I'm Pilar Nieto Pérez, a tax advisor based in Valencia. I work with individuals, self-employed professionals and businesses who need more than their taxes filed on time - they need to understand their numbers and make decisions with confidence.",
+			'My approach combines technical rigour with a personal touch: I explain every step in plain language, without unnecessary jargon, and treat every case as if it were the only one I\u2019m handling.',
+			'I handle recurring filings — income tax, VAT, self-employment — as well as more delicate matters: inheritance and gift tax, and administrative proceedings before the Tax Agency.',
+		],
+		facts: [
+			{ label: 'Based in', value: 'Valencia, Spain' },
+			{ label: 'Languages', value: 'Spanish · Catalan · English · Russian' },
+			{ label: 'Focus', value: 'Tax advice for individuals and businesses' },
+			{ label: 'Availability', value: 'New clients welcome' },
+		],
+	},
+	ca: {
+		title: 'La firma — Pilar Nieto Pérez',
+		description: "Pilar Nieto Pérez, assessora fiscal a València. Rigor tècnic i tracte proper en cada expedient.",
+		eyebrow: 'La firma',
+		heading: 'Assessorament fiscal amb criteri propi',
+		bio: [
+			"Sóc Pilar Nieto Pérez, assessora fiscal a València. Treballo amb particulars, autònoms i empreses que necessiten alguna cosa més que presentar els impostos a temps: necessiten entendre els seus números i prendre decisions amb seguretat.",
+			"El meu enfocament combina el rigor tècnic amb la proximitat: explico cada gestió en termes clars, sense tecnicismes innecessaris, i m'implico en cada expedient com si fos l'únic que porto.",
+			"Atenc tant tràmits recurrents —renda, IVA, autònoms— com situacions més delicades: successions i donacions, o procediments administratius davant l'Agència Tributària.",
+		],
+		facts: [
+			{ label: 'Seu', value: 'València' },
+			{ label: 'Idiomes', value: 'Espanyol · Català · English · Русский' },
+			{ label: 'Enfocament', value: 'Fiscalitat de particulars i empreses' },
+			{ label: 'Disponibilitat', value: 'Nous clients benvinguts' },
+		],
+	},
+	ru: {
+		title: 'О фирме — Пилар Ньето Перес',
+		description: 'Пилар Ньето Перес, налоговый консультант в Валенсии. Техническая точность и личное внимание к каждому делу.',
+		eyebrow: 'О фирме',
+		heading: 'Налоговое консультирование с чёткой позицией',
+		bio: [
+			'Меня зовут Пилар Ньето Перес, я налоговый консультант в Валенсии. Работаю с частными лицами, самозанятыми и компаниями, которым важно не просто вовремя подать декларацию, а понимать свои цифры и принимать решения с уверенностью.',
+			'Мой подход сочетает техническую точность с личным вниманием: я объясняю каждый шаг простым языком, без лишних терминов, и веду каждое дело так, как будто оно единственное.',
+			'Я занимаюсь как регулярными вопросами — подоходный налог, НДС, самозанятость, — так и более деликатными: налог на наследство и дарение, а также административные процедуры в налоговой инспекции.',
+		],
+		facts: [
+			{ label: 'Город', value: 'Валенсия' },
+			{ label: 'Языки', value: 'испанский · каталанский · английский · русский' },
+			{ label: 'Специализация', value: 'налоги для частных лиц и компаний' },
+			{ label: 'Приём клиентов', value: 'открыт для новых клиентов' },
+		],
+	},
+} as const;
+
+const t = UI[lang];
+---
+
+<Layout title={t.title} description={t.description} lang={lang} slug="sobre-mi">
+	<PageHeader eyebrow={t.eyebrow} title={t.heading} />
+
+	<section class="bio">
+		<div class="container">
+			<div class="bio-text reveal">
+				{t.bio.map((p) => <p>{p}</p>)}
+			</div>
+
+			<div class="facts-row reveal">
+				{
+					t.facts.map((fact) => (
+						<div class="fact-card">
+							<p class="fact-label">{fact.label}</p>
+							<p class="fact-value">{fact.value}</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.bio {
+		padding-block: 1rem 6rem;
+	}
+
+	.bio-text {
+		max-width: 62ch;
+		margin-block-end: 3rem;
+	}
+
+	.bio-text p {
+		font-size: 1.04rem;
+		line-height: 1.75;
+		color: var(--color-text-dim);
+	}
+
+	.bio-text p + p {
+		margin-block-start: 1.25rem;
+	}
+
+	.facts-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.fact-card {
+		flex: 1 1 220px;
+		background: var(--color-bg-elevated);
+		border: 1px solid var(--color-border);
+		border-inline-start: 2px solid var(--color-gold);
+		padding: 1.1rem 1.3rem;
+	}
+
+	.fact-label {
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--color-wine);
+		margin-block-end: 0.4rem;
+	}
+
+	.fact-value {
+		font-family: var(--font-display);
+		font-weight: 500;
+		font-size: 1rem;
+	}
+</style>

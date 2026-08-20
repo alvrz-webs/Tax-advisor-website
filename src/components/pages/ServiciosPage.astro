@@ -1,0 +1,264 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../PageHeader.astro';
+import { localizedPath, type Locale } from '../../lib/i18n';
+
+interface Props {
+	lang?: Locale;
+}
+
+const { lang = 'es' } = Astro.props;
+
+const UI = {
+	es: {
+		title: 'Áreas de práctica — Pilar Nieto Pérez',
+		description: 'Renta, IVA, autónomos, sucesiones y donaciones, y procedimientos administrativos. Asesoría fiscal en Valencia.',
+		eyebrow: 'Áreas de práctica',
+		heading: 'En qué puedo ayudarte',
+		intro: 'Cinco áreas de trabajo, con el mismo criterio en todas: claridad, rigor y acompañamiento cercano.',
+		ctaTitle: '¿Tu caso no encaja exactamente aquí?',
+		ctaText: 'Cuéntame tu situación y te digo cómo puedo ayudarte.',
+		ctaBtn: 'Contactar',
+		items: [
+			{
+				n: '01',
+				t: 'Declaración de la Renta',
+				d: 'Preparación y presentación del IRPF, revisando deducciones y bonificaciones para que no pagues de más.',
+			},
+			{
+				n: '02',
+				t: 'IVA',
+				d: 'Gestión y liquidación trimestral y anual del IVA, con control de plazos y modelos.',
+			},
+			{
+				n: '03',
+				t: 'Autónomos',
+				d: 'Alta, tributación y obligaciones fiscales recurrentes para trabajadores por cuenta propia.',
+			},
+			{
+				n: '04',
+				t: 'Impuesto sobre Sucesiones y Donaciones',
+				d: 'Planificación y liquidación en herencias y donaciones, minimizando la carga fiscal dentro de la legalidad.',
+			},
+			{
+				n: '05',
+				t: 'Procedimientos Administrativos',
+				d: 'Representación y defensa ante requerimientos, comprobaciones e inspecciones de la Agencia Tributaria.',
+			},
+		],
+	},
+	en: {
+		title: 'Practice areas — Pilar Nieto Pérez',
+		description: 'Income tax, VAT, self-employment, inheritance and gift tax, and administrative proceedings. Tax advisory in Valencia.',
+		eyebrow: 'Practice areas',
+		heading: 'How I can help',
+		intro: 'Five areas of work, all built on the same principles: clarity, rigour and close, personal attention.',
+		ctaTitle: "Not quite what you're looking for?",
+		ctaText: "Tell me about your situation and I'll let you know how I can help.",
+		ctaBtn: 'Get in touch',
+		items: [
+			{
+				n: '01',
+				t: 'Income Tax Return',
+				d: "Preparation and filing of personal income tax (IRPF), reviewing deductions and allowances so you don't overpay.",
+			},
+			{
+				n: '02',
+				t: 'VAT',
+				d: 'Quarterly and annual VAT management and filing, with full control of deadlines and forms.',
+			},
+			{
+				n: '03',
+				t: 'Self-Employed',
+				d: 'Registration, taxation and recurring tax obligations for the self-employed.',
+			},
+			{
+				n: '04',
+				t: 'Inheritance & Gift Tax',
+				d: 'Planning and settlement of inheritance and gift tax, minimising the tax burden within the law.',
+			},
+			{
+				n: '05',
+				t: 'Administrative Proceedings',
+				d: 'Representation and defence before requests, reviews and inspections from the Tax Agency.',
+			},
+		],
+	},
+	ca: {
+		title: 'Àrees de pràctica — Pilar Nieto Pérez',
+		description: "Renda, IVA, autònoms, successions i donacions, i procediments administratius. Assessoria fiscal a València.",
+		eyebrow: 'Àrees de pràctica',
+		heading: 'En què et puc ajudar',
+		intro: 'Cinc àrees de treball, amb el mateix criteri en totes: claredat, rigor i acompanyament proper.',
+		ctaTitle: 'El teu cas no encaixa exactament aquí?',
+		ctaText: "Explica'm la teva situació i et diré com et puc ajudar.",
+		ctaBtn: 'Contacta',
+		items: [
+			{
+				n: '01',
+				t: 'Declaració de la Renda',
+				d: "Preparació i presentació de l'IRPF, revisant deduccions i bonificacions perquè no paguis de més.",
+			},
+			{
+				n: '02',
+				t: 'IVA',
+				d: "Gestió i liquidació trimestral i anual de l'IVA, amb control de terminis i models.",
+			},
+			{
+				n: '03',
+				t: 'Autònoms',
+				d: 'Alta, tributació i obligacions fiscals recurrents per a treballadors per compte propi.',
+			},
+			{
+				n: '04',
+				t: 'Impost sobre Successions i Donacions',
+				d: 'Planificació i liquidació en herències i donacions, minimitzant la càrrega fiscal dins de la legalitat.',
+			},
+			{
+				n: '05',
+				t: 'Procediments Administratius',
+				d: "Representació i defensa davant requeriments, comprovacions i inspeccions de l'Agència Tributària.",
+			},
+		],
+	},
+	ru: {
+		title: 'Направления работы — Пилар Ньето Перес',
+		description: 'Подоходный налог, НДС, самозанятость, налог на наследство и административные процедуры. Налоговый консультант в Валенсии.',
+		eyebrow: 'Направления работы',
+		heading: 'Чем я могу помочь',
+		intro: 'Пять направлений работы — и единый принцип во всех: ясность, точность и личное внимание.',
+		ctaTitle: 'Ваш случай не подходит ни под один пункт?',
+		ctaText: 'Расскажите о своей ситуации, и я подскажу, чем могу помочь.',
+		ctaBtn: 'Связаться',
+		items: [
+			{
+				n: '01',
+				t: 'Декларация о доходах (IRPF)',
+				d: 'Подготовка и подача декларации о доходах с проверкой всех вычетов и льгот, чтобы вы не переплачивали.',
+			},
+			{
+				n: '02',
+				t: 'НДС (IVA)',
+				d: 'Ведение и подача квартальной и годовой отчётности по НДС с контролем сроков и форм.',
+			},
+			{
+				n: '03',
+				t: 'Самозанятость (Autónomos)',
+				d: 'Регистрация, налогообложение и текущие налоговые обязательства для самозанятых.',
+			},
+			{
+				n: '04',
+				t: 'Налог на наследство и дарение',
+				d: 'Планирование и уплата налога на наследство и дарение с минимизацией налоговой нагрузки в рамках закона.',
+			},
+			{
+				n: '05',
+				t: 'Административные процедуры',
+				d: 'Представительство и защита интересов при запросах, проверках и налоговых инспекциях.',
+			},
+		],
+	},
+} as const;
+
+const t = UI[lang];
+---
+
+<Layout title={t.title} description={t.description} lang={lang} slug="servicios">
+	<PageHeader eyebrow={t.eyebrow} title={t.heading} description={t.intro} />
+
+	<section class="articulado">
+		<div class="container">
+			<div class="lista reveal">
+				{
+					t.items.map((item) => (
+						<article class="articulo-item">
+							<span class="articulo-n">Art. {item.n}</span>
+							<div class="articulo-body">
+								<h2>{item.t}</h2>
+								<p class="text-dim">{item.d}</p>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="cta-final">
+		<div class="container cta-final-inner reveal">
+			<h2>{t.ctaTitle}</h2>
+			<p class="text-dim">{t.ctaText}</p>
+			<a href={localizedPath('/contacto', lang)} class="btn btn-primary">{t.ctaBtn}</a>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.articulado {
+		padding-block: 1rem 4rem;
+	}
+
+	.lista {
+		display: flex;
+		flex-direction: column;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.articulo-item {
+		display: grid;
+		grid-template-columns: 6.5rem 1fr;
+		gap: 1.75rem;
+		padding-block: 2.25rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.articulo-n {
+		font-family: var(--font-mono);
+		font-size: 0.85rem;
+		color: var(--color-gold);
+		padding-block-start: 0.25rem;
+	}
+
+	.articulo-body h2 {
+		font-size: 1.4rem;
+		font-weight: 600;
+		margin-block-end: 0.6rem;
+	}
+
+	.articulo-body p {
+		font-size: 1rem;
+		line-height: 1.65;
+		max-width: 58ch;
+	}
+
+	.cta-final {
+		border-top: 1px solid var(--color-border);
+		padding-block: 4rem;
+		background: var(--color-bg-elevated);
+	}
+
+	.cta-final-inner {
+		max-width: 54ch;
+		text-align: center;
+		margin-inline: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.cta-final-inner h2 {
+		font-size: clamp(1.4rem, 3vw, 1.9rem);
+	}
+
+	.cta-final-inner .btn {
+		margin-block-start: 0.5rem;
+	}
+
+	@media (max-width: 620px) {
+		.articulo-item {
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+		}
+	}
+</style>

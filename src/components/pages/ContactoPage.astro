@@ -1,0 +1,151 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../PageHeader.astro';
+import { type Locale } from '../../lib/i18n';
+import mailIcon from '../../icons/mail.svg?raw';
+import linkedinIcon from '../../icons/linkedin.svg?raw';
+
+interface Props {
+	lang?: Locale;
+}
+
+const { lang = 'es' } = Astro.props;
+
+const UI = {
+	es: {
+		title: 'Contacto — Pilar Nieto Pérez',
+		description: 'Contacta con Pilar Nieto Pérez, asesora fiscal en Valencia, por email o LinkedIn.',
+		eyebrow: 'Contacto',
+		heading: '¿Hablamos de tu situación fiscal?',
+		intro: 'Escríbeme por correo o contacta a través de LinkedIn. Respondo personalmente cada consulta.',
+		email: 'Email',
+		linkedin: 'LinkedIn',
+		verPerfil: 'Ver perfil',
+	},
+	en: {
+		title: 'Contact — Pilar Nieto Pérez',
+		description: 'Get in touch with Pilar Nieto Pérez, tax advisor in Valencia, by email or LinkedIn.',
+		eyebrow: 'Contact',
+		heading: 'Shall we talk about your tax situation?',
+		intro: 'Write to me by email or reach out on LinkedIn. I answer every enquiry personally.',
+		email: 'Email',
+		linkedin: 'LinkedIn',
+		verPerfil: 'View profile',
+	},
+	ca: {
+		title: 'Contacte — Pilar Nieto Pérez',
+		description: "Contacta amb Pilar Nieto Pérez, assessora fiscal a València, per email o LinkedIn.",
+		eyebrow: 'Contacte',
+		heading: 'Parlem de la teva situació fiscal?',
+		intro: "Escriu-me per correu o contacta a través de LinkedIn. Responc personalment cada consulta.",
+		email: 'Email',
+		linkedin: 'LinkedIn',
+		verPerfil: 'Veure perfil',
+	},
+	ru: {
+		title: 'Контакты — Пилар Ньето Перес',
+		description: 'Свяжитесь с Пилар Ньето Перес, налоговым консультантом в Валенсии, по почте или через LinkedIn.',
+		eyebrow: 'Контакты',
+		heading: 'Обсудим вашу налоговую ситуацию?',
+		intro: 'Напишите мне на почту или свяжитесь через LinkedIn. Я лично отвечаю на каждое обращение.',
+		email: 'Email',
+		linkedin: 'LinkedIn',
+		verPerfil: 'Открыть профиль',
+	},
+} as const;
+
+const t = UI[lang];
+const EMAIL = 'pilarnietop@outlook.com';
+const LINKEDIN = 'https://www.linkedin.com/in/pilar-nieto-pérez-020b0320a';
+---
+
+<Layout title={t.title} description={t.description} lang={lang} slug="contacto">
+	<PageHeader eyebrow={t.eyebrow} title={t.heading} description={t.intro} />
+
+	<section class="contact">
+		<div class="container">
+			<div class="contact-methods reveal">
+				<a href={`mailto:${EMAIL}`} class="contact-card">
+					<span class="contact-card-icon" set:html={mailIcon} />
+					<span class="contact-card-body">
+						<span class="contact-card-label">{t.email}</span>
+						<span class="contact-card-value">{EMAIL}</span>
+					</span>
+				</a>
+
+				<a href={LINKEDIN} target="_blank" rel="noopener noreferrer" class="contact-card">
+					<span class="contact-card-icon" set:html={linkedinIcon} />
+					<span class="contact-card-body">
+						<span class="contact-card-label">{t.linkedin}</span>
+						<span class="contact-card-value">{t.verPerfil}</span>
+					</span>
+				</a>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.contact {
+		padding-block: 1.5rem 6rem;
+	}
+
+	.contact-methods {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: 1.25rem;
+		max-width: 720px;
+	}
+
+	.contact-card {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		background: var(--color-bg-elevated);
+		border: 1px solid var(--color-border);
+		border-inline-start: 2px solid var(--color-gold);
+		padding: 1.4rem 1.5rem;
+		text-decoration: none;
+		color: var(--color-ink);
+		transition: border-color var(--transition-fast), transform var(--transition-fast);
+	}
+
+	.contact-card:hover {
+		border-color: var(--color-wine);
+		border-inline-start-color: var(--color-wine);
+		transform: translateY(-2px);
+	}
+
+	.contact-card-icon {
+		flex-shrink: 0;
+		display: inline-flex;
+		color: var(--color-wine);
+	}
+
+	.contact-card-icon :global(svg) {
+		width: 24px;
+		height: 24px;
+	}
+
+	.contact-card-body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+		min-width: 0;
+	}
+
+	.contact-card-label {
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--color-text-dim);
+	}
+
+	.contact-card-value {
+		font-family: var(--font-display);
+		font-weight: 500;
+		font-size: 1.02rem;
+		word-break: break-word;
+	}
+</style>
