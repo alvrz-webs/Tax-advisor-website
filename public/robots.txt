@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pili-web.malvmar5.workers.dev/sitemap-index.xml
