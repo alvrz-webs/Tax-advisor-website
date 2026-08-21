@@ -9,6 +9,9 @@ interface Props {
 
 const { lang = 'es' } = Astro.props;
 
+// TODO: si quieres mostrar el nivel de cada idioma (ej. "Español (Nativo)"), añádelo
+// en el campo "Idiomas"/"Languages" de cada locale más abajo. Se quitó el (B2) del
+// francés para no dejar solo un idioma con nivel indicado y el resto sin él.
 const UI = {
 	es: {
 		title: 'La firma — Pilar Nieto Pérez',
@@ -22,7 +25,7 @@ const UI = {
 		],
 		facts: [
 			{ label: 'Sede', value: 'Valencia' },
-			{ label: 'Idiomas', value: 'Español · Francés (B2) · English · Русский' },
+			{ label: 'Idiomas', value: 'Español · Francés · English · Русский' },
 			{ label: 'Enfoque', value: 'Fiscalidad de particulares y empresas' },
 			{ label: 'Disponibilidad', value: 'Nuevos clientes bienvenidos' },
 		],
@@ -56,7 +59,7 @@ const UI = {
 						'Verificación de balances, cuentas de pérdidas y ganancias y memorias, detectando discrepancias técnicas para asegurar el cumplimiento normativo en el depósito de cuentas anuales.',
 				},
 				{
-					period: 'Nov 2025 – Actualidad',
+					period: 'Nov 2025 – Julio 2026',
 					title: 'Becaria de fiscalidad',
 					place: 'Martínez Ojeda y Asociados — Asesoría Legal, Financiera y Tributaria Internacional S.L.',
 					description:
@@ -77,7 +80,7 @@ const UI = {
 		],
 		facts: [
 			{ label: 'Based in', value: 'Valencia, Spain' },
-			{ label: 'Languages', value: 'Spanish · French (B2) · English · Russian' },
+			{ label: 'Languages', value: 'Spanish · French · English · Russian' },
 			{ label: 'Focus', value: 'Tax advice for individuals and businesses' },
 			{ label: 'Availability', value: 'New clients welcome' },
 		],
@@ -111,7 +114,7 @@ const UI = {
 						'Reviewed balance sheets, profit and loss accounts and annual reports, identifying technical discrepancies to ensure regulatory compliance when filing annual accounts.',
 				},
 				{
-					period: 'Nov 2025 – Present',
+					period: 'Nov 2025 – July 2026',
 					title: 'Tax intern',
 					place: 'Martínez Ojeda y Asociados — Asesoría Legal, Financiera y Tributaria Internacional S.L.',
 					description:
@@ -132,7 +135,7 @@ const UI = {
 		],
 		facts: [
 			{ label: 'Seu', value: 'València' },
-			{ label: 'Idiomes', value: 'Espanyol · Francès (B2) · English · Русский' },
+			{ label: 'Idiomes', value: 'Espanyol · Francès · English · Русский' },
 			{ label: 'Enfocament', value: 'Fiscalitat de particulars i empreses' },
 			{ label: 'Disponibilitat', value: 'Nous clients benvinguts' },
 		],
@@ -166,7 +169,7 @@ const UI = {
 						"Verificació de balanços, comptes de pèrdues i guanys i memòries, detectant discrepàncies tècniques per assegurar el compliment normatiu en el dipòsit de comptes anuals.",
 				},
 				{
-					period: 'Nov 2025 – Actualitat',
+					period: 'Nov 2025 – Juliol 2026',
 					title: 'Becària de fiscalitat',
 					place: 'Martínez Ojeda y Asociados — Asesoría Legal, Financiera y Tributaria Internacional S.L.',
 					description:
@@ -187,7 +190,7 @@ const UI = {
 		],
 		facts: [
 			{ label: 'Город', value: 'Валенсия' },
-			{ label: 'Языки', value: 'испанский · французский (B2) · английский · русский' },
+			{ label: 'Языки', value: 'испанский · французский · английский · русский' },
 			{ label: 'Специализация', value: 'налоги для частных лиц и компаний' },
 			{ label: 'Приём клиентов', value: 'открыт для новых клиентов' },
 		],
@@ -221,7 +224,7 @@ const UI = {
 						'Проверка балансов, отчётов о прибылях и убытках и пояснительных записок с выявлением технических несоответствий для обеспечения соответствия нормативным требованиям при подаче годовой отчётности.',
 				},
 				{
-					period: 'ноя 2025 – настоящее время',
+					period: 'ноя 2025 – июль 2026',
 					title: 'Стажёр по налогообложению',
 					place: 'Martínez Ojeda y Asociados — Asesoría Legal, Financiera y Tributaria Internacional S.L.',
 					description:
