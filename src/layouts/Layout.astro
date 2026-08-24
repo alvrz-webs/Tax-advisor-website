@@ -105,8 +105,7 @@ const jsonLd = {
 		<header id="site-header">
 			<div class="container nav-inner">
 				<a href={localizedPath('/', lang)} class="brand" aria-label="Pilar Nieto Pérez — Asesoría Fiscal">
-					<img class="brand-mark brand-mark-light" src="/logo-mark.png" alt="" width="40" height="40" decoding="async" />
-					<img class="brand-mark brand-mark-dark" src="/logo-mark-dark.png" alt="" width="40" height="40" decoding="async" />
+					<img class="brand-mark" src="/logo-mark.png" alt="" width="40" height="40" decoding="async" />
 					<span class="brand-name">Pilar Nieto <em>Pérez</em></span>
 				</a>
 
@@ -153,8 +152,7 @@ const jsonLd = {
 		<footer>
 			<div class="container footer-inner">
 				<div class="footer-brand">
-					<img class="footer-mark footer-mark-light" src="/logo-mark.png" alt="" width="46" height="46" loading="lazy" decoding="async" />
-					<img class="footer-mark footer-mark-dark" src="/logo-mark-dark.png" alt="" width="46" height="46" loading="lazy" decoding="async" />
+					<img class="footer-mark" src="/logo-mark.png" alt="" width="46" height="46" loading="lazy" decoding="async" />
 					<p class="footer-name">Pilar Nieto Pérez</p>
 					<p class="text-dim">{t.footer.tagline}</p>
 					<SocialLinks
@@ -359,23 +357,6 @@ const jsonLd = {
 		height: 46px;
 		object-fit: contain;
 		margin-block-end: 0.7rem;
-	}
-
-	.brand-mark-dark,
-	.footer-mark-dark {
-		display: none;
-	}
-
-	@media (prefers-color-scheme: dark) {
-		.brand-mark-light,
-		.footer-mark-light {
-			display: none;
-		}
-
-		.brand-mark-dark,
-		.footer-mark-dark {
-			display: block;
-		}
 	}
 
 	.footer-name {
