@@ -12,7 +12,7 @@ export function localizedPath(path: string, lang: Locale): string {
 export const strings = {
 	es: {
 		nav: {
-			laFirma: 'La firma',
+			laFirma: 'Sobre mí',
 			servicios: 'Áreas de práctica',
 			contacto: 'Contacto',
 			ariaMain: 'Navegación principal',
