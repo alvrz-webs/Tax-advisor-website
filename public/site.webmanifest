@@ -1,0 +1,19 @@
+{
+	"name": "Pilar Nieto Pérez — Asesoría Fiscal",
+	"short_name": "Pilar Nieto",
+	"theme_color": "#16253c",
+	"background_color": "#16253c",
+	"display": "standalone",
+	"icons": [
+		{
+			"src": "/favicon-192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/favicon-512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}
