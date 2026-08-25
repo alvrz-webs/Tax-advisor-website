@@ -38,16 +38,25 @@ const UI = {
 					period: '2020–2025',
 					title: 'Doble Grado en Derecho y Criminología',
 					place: 'Universitat de València',
+					status: null,
 				},
 				{
 					period: '2025',
 					title: 'Experto en Fiscalidad Internacional',
 					place: 'Universitat de València',
+					status: null,
 				},
 				{
-					period: '2025–2026 · en curso',
+					period: '2025–2026',
 					title: 'Máster en Asesoría Fiscal y Tributación',
 					place: 'Centro de Estudios Financieros (CEF)',
+					status: null,
+				},
+				{
+					period: '2026',
+					title: 'Doble Máster en Abogacía y Derecho de la Empresa',
+					place: 'Universitat de València',
+					status: { label: 'En curso', kind: 'ongoing' },
 				},
 			],
 			professional: [
@@ -93,16 +102,25 @@ const UI = {
 					period: '2020–2025',
 					title: 'Dual Degree in Law and Criminology',
 					place: 'Universitat de València',
+					status: null,
 				},
 				{
 					period: '2025',
 					title: 'Expert in International Taxation',
 					place: 'Universitat de València',
+					status: null,
 				},
 				{
-					period: '2025–2026 · ongoing',
+					period: '2025–2026',
 					title: "Master's Degree in Tax Advisory and Taxation",
 					place: 'Centro de Estudios Financieros (CEF)',
+					status: null,
+				},
+				{
+					period: '2026',
+					title: "Dual Master's Degree in Legal Practice and Corporate Law",
+					place: 'Universitat de València',
+					status: { label: 'Ongoing', kind: 'ongoing' },
 				},
 			],
 			professional: [
@@ -148,16 +166,25 @@ const UI = {
 					period: '2020–2025',
 					title: 'Doble Grau en Dret i Criminologia',
 					place: 'Universitat de València',
+					status: null,
 				},
 				{
 					period: '2025',
 					title: 'Expert en Fiscalitat Internacional',
 					place: 'Universitat de València',
+					status: null,
 				},
 				{
-					period: '2025–2026 · en curs',
+					period: '2025–2026',
 					title: 'Màster en Assessoria Fiscal i Tributació',
 					place: 'Centro de Estudios Financieros (CEF)',
+					status: null,
+				},
+				{
+					period: '2026',
+					title: "Doble Màster en Advocacia i Dret de l'Empresa",
+					place: 'Universitat de València',
+					status: { label: 'En curs', kind: 'ongoing' },
 				},
 			],
 			professional: [
@@ -203,16 +230,25 @@ const UI = {
 					period: '2020–2025',
 					title: 'Двойная степень по праву и криминологии',
 					place: 'Universitat de València',
+					status: null,
 				},
 				{
 					period: '2025',
 					title: 'Эксперт по международному налогообложению',
 					place: 'Universitat de València',
+					status: null,
 				},
 				{
-					period: '2025–2026 · продолжается',
+					period: '2025–2026',
 					title: 'Магистратура по налоговому консультированию и налогообложению',
 					place: 'Centro de Estudios Financieros (CEF)',
+					status: null,
+				},
+				{
+					period: '2026',
+					title: 'Двойная магистратура по адвокатской практике и предпринимательскому праву',
+					place: 'Universitat de València',
+					status: { label: 'Продолжается', kind: 'ongoing' },
 				},
 			],
 			professional: [
@@ -289,6 +325,11 @@ const t = UI[lang];
 									<p class="timeline-period">{item.period}</p>
 									<p class="timeline-title">{item.title}</p>
 									<p class="timeline-place text-dim">{item.place}</p>
+									{item.status && (
+										<span class={`timeline-status timeline-status--${item.status.kind}`}>
+											{item.status.label}
+										</span>
+									)}
 								</li>
 							))
 						}
@@ -451,6 +492,30 @@ const t = UI[lang];
 
 	.timeline-place {
 		font-size: 0.92rem;
+	}
+
+	.timeline-status {
+		display: inline-block;
+		margin-block-start: 0.55rem;
+		padding: 0.22rem 0.65rem;
+		border-radius: 999px;
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		line-height: 1.4;
+	}
+
+	.timeline-status--done {
+		background: color-mix(in srgb, var(--color-gold) 14%, var(--color-bg-elevated));
+		color: var(--color-gold-text);
+		border: 1px solid color-mix(in srgb, var(--color-gold) 45%, transparent);
+	}
+
+	.timeline-status--ongoing {
+		background: color-mix(in srgb, var(--color-ink) 6%, var(--color-bg-elevated));
+		color: var(--color-ink);
+		border: 1px solid var(--color-border);
 	}
 
 	.timeline-desc {
