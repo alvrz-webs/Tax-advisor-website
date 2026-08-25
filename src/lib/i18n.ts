@@ -30,7 +30,7 @@ export const strings = {
 	},
 	en: {
 		nav: {
-			laFirma: 'The firm',
+			laFirma: 'About me',
 			servicios: 'Practice areas',
 			contacto: 'Contact',
 			ariaMain: 'Main navigation',
@@ -48,7 +48,7 @@ export const strings = {
 	},
 	ca: {
 		nav: {
-			laFirma: 'La firma',
+			laFirma: 'Sobre mi',
 			servicios: 'Àrees de pràctica',
 			contacto: 'Contacte',
 			ariaMain: 'Navegació principal',
@@ -66,7 +66,7 @@ export const strings = {
 	},
 	ru: {
 		nav: {
-			laFirma: 'О фирме',
+			laFirma: 'Обо мне',
 			servicios: 'Направления',
 			contacto: 'Контакты',
 			ariaMain: 'Основная навигация',
