@@ -14,7 +14,7 @@ src/
 │       ├── ServiciosPage.astro
 │       ├── ContactoPage.astro
 │       └── AvisoLegalPage.astro
-├── icons/                       # SVGs (email, LinkedIn)
+├── icons/                       # SVGs (email, LinkedIn, ubicación)
 ├── layouts/
 │   └── Layout.astro             # cabecera, navegación, pie de página
 ├── lib/
@@ -41,10 +41,17 @@ Todo el texto visible está en los archivos de `src/components/pages/*.astro`, d
 | `npm run build`       | Genera la versión de producción en `./dist/` |
 | `npm run preview`      | Previsualiza el build de producción localmente |
 
+## Despliegue
+
+El sitio se despliega en Cloudflare Workers (config en `wrangler.jsonc`, assets estáticos servidos desde `./dist`):
+
+```
+npm run build
+npx wrangler deploy
+```
+
 ## Antes de publicarla
 
-- **Formulario de contacto:** consigue una clave gratuita en [web3forms.com](https://web3forms.com) (solo con el email de Pilar) y pégala en `WEB3FORMS_ACCESS_KEY`, dentro de `src/components/pages/ContactoPage.astro`. Sin una clave válida, el formulario no envía.
-- **Ubicación:** en ese mismo archivo, ajusta `ADDRESS` y `MAP_QUERY` con la dirección real en Valencia (o elimina la sección `.location` si no hay despacho físico).
-- Cambia `site` en `astro.config.mjs` por tu dominio definitivo (ahora apunta a `https://pilarnietofiscal.com`).
 - Revisa `src/components/pages/AvisoLegalPage.astro`: es un modelo básico y te recomiendo que lo valide un profesional del derecho antes de publicar la web.
-- Los recursos de marca (logo, foto, favicon e imagen para compartir) están en `public/`.
+- Si cambias de dominio, actualiza `site` en `astro.config.mjs` (ahora mismo apunta a `https://pili-web.malvmar5.workers.dev`).
+- Los recursos de marca (logo, foto, favicons, imagen para compartir, manifest) están en `public/`.
