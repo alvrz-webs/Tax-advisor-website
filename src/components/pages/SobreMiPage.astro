@@ -323,13 +323,15 @@ const t = UI[lang];
 							t.formacion.academic.map((item) => (
 								<li class="timeline-item">
 									<p class="timeline-period">{item.period}</p>
-									<p class="timeline-title">{item.title}</p>
-									<p class="timeline-place text-dim">{item.place}</p>
-									{item.status && (
-										<span class={`timeline-status timeline-status--${item.status.kind}`}>
-											{item.status.label}
-										</span>
-									)}
+									<div class="timeline-content">
+										<p class="timeline-title">{item.title}</p>
+										<p class="timeline-place text-dim">{item.place}</p>
+										{item.status && (
+											<span class={`timeline-status timeline-status--${item.status.kind}`}>
+												{item.status.label}
+											</span>
+										)}
+									</div>
 								</li>
 							))
 						}
@@ -343,9 +345,11 @@ const t = UI[lang];
 							t.formacion.professional.map((item) => (
 								<li class="timeline-item">
 									<p class="timeline-period">{item.period}</p>
-									<p class="timeline-title">{item.title}</p>
-									<p class="timeline-place text-dim">{item.place}</p>
-									<p class="timeline-desc text-dim">{item.description}</p>
+									<div class="timeline-content">
+										<p class="timeline-title">{item.title}</p>
+										<p class="timeline-place text-dim">{item.place}</p>
+										<p class="timeline-desc text-dim">{item.description}</p>
+									</div>
 								</li>
 							))
 						}
@@ -471,6 +475,9 @@ const t = UI[lang];
 	}
 
 	.timeline-item {
+		display: grid;
+		grid-template-columns: 7.75rem 1fr;
+		gap: 0.2rem 1.25rem;
 		border-inline-start: 2px solid var(--color-gold);
 		padding-inline-start: 1.1rem;
 	}
@@ -480,14 +487,20 @@ const t = UI[lang];
 		font-size: 0.76rem;
 		letter-spacing: 0.03em;
 		color: var(--color-text-dim);
-		margin-block-end: 0.35rem;
+		padding-block-start: 0.15rem;
+	}
+
+	.timeline-content {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		min-width: 0;
 	}
 
 	.timeline-title {
 		font-family: var(--font-display);
 		font-weight: 600;
 		font-size: 1.02rem;
-		margin-block-end: 0.25rem;
 	}
 
 	.timeline-place {
@@ -521,7 +534,17 @@ const t = UI[lang];
 	.timeline-desc {
 		font-size: 0.92rem;
 		line-height: 1.6;
-		margin-block-start: 0.5rem;
+		margin-block-start: 0.25rem;
+		text-align: justify;
+		text-align-last: left;
+		hyphens: auto;
+	}
+
+	@media (max-width: 560px) {
+		.timeline-item {
+			grid-template-columns: 1fr;
+			gap: 0.35rem;
+		}
 	}
 
 	@media (max-width: 760px) {
