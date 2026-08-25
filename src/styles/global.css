@@ -68,6 +68,9 @@ h4 {
 
 p {
 	margin: 0;
+	text-align: justify;
+	text-align-last: left;
+	hyphens: auto;
 }
 
 ul {
